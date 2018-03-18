@@ -12,16 +12,22 @@ namespace BlockVideo.Models
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Movie Name")]
         public String Name { get; set; }
 
-        [Required]
         public Genre Genre { get; set; }
+
+        [Display(Name = "Genre Name")]
+        [Required]
         public byte GenreId { get; set; }
 
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
+        [Display(Name = "Date Added")]
         public DateTime DateAdded { get; set; }
 
+        [Display(Name = "Number In Stock")]
         public byte NumberInStock { get; set; }
     }
 }
