@@ -8,6 +8,7 @@ using System.Web.Http;
 using AutoMapper;
 using BlockVideo.Dtos;
 using BlockVideo.Models;
+using BlockVideo.ViewModels;
 
 namespace BlockVideo.Controllers.Api
 {
