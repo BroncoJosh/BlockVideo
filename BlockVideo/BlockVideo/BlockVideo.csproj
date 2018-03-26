@@ -295,6 +295,10 @@
     <Compile Include="Migrations\201803261752072_CreateRentalDataSet.Designer.cs">
       <DependentUpon>201803261752072_CreateRentalDataSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803262033318_AddNumberAvailableToMoviesModel.cs" />
+    <Compile Include="Migrations\201803262033318_AddNumberAvailableToMoviesModel.Designer.cs">
+      <DependentUpon>201803262033318_AddNumberAvailableToMoviesModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -619,6 +623,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803261752072_CreateRentalDataSet.resx">
       <DependentUpon>201803261752072_CreateRentalDataSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803262033318_AddNumberAvailableToMoviesModel.resx">
+      <DependentUpon>201803262033318_AddNumberAvailableToMoviesModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
