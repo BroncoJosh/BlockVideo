@@ -22,6 +22,7 @@ namespace BlockVideo.Controllers.Api
         }
 
         // GET /api/movies
+        /*
         public IEnumerable<MovieDto> GetMovies()
         {
             return _context.Movies
@@ -29,6 +30,21 @@ namespace BlockVideo.Controllers.Api
                 .ToList()
                 .Select(Mapper.Map<Movie, MovieDto>);
         }
+        */
+        public IEnumerable<MovieDto> GetMovies(string query = null)
+        {
+            var moviesQuery = _context.Movies
+                .Include(m => m.Genre)
+                .Where(m => m.NumberAvailable > 0);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+
+            return moviesQuery
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
+        }
+
         // GET /api/movies/1
         public IHttpActionResult GetMovies(int id)
         {

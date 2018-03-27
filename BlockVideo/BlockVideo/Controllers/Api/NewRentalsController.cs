@@ -20,14 +20,28 @@ namespace BlockVideo.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
-            var customer = _context.Customers.Single(
+            if (newRental.MovieIds.Count == 0)
+                return BadRequest("No Movie Id's have been given.");
+
+            var customer = _context.Customers.SingleOrDefault(
                 c => c.Id == newRental.CustomerId);
 
+            if (customer == null)
+                return BadRequest("Customer Id is not valid.");
+
+            
             var movies = _context.Movies.Where(
-                m => newRental.MovieIds.Contains(m.Id));
+                m => newRental.MovieIds.Contains(m.Id)).ToList();
+
+            if (movies.Count != newRental.MovieIds.Count)
+                return BadRequest("One or more MovieIds are invalid.");
+
 
             foreach (var movie in movies)
             {
+                if (movie.NumberAvailable == 0)
+                    return BadRequest("Movie is not available.");
+
                 var rental = new Rental
                 {
                     Customer = customer,
