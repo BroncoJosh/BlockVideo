@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI;
 using BlockVideo.Models;
 using BlockVideo.ViewModels;
 
@@ -89,6 +90,7 @@ namespace BlockVideo.Controllers
         [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
+
             if (!ModelState.IsValid)
             {
                 var viewModel = new MovieFormViewModel(movie)
@@ -101,6 +103,7 @@ namespace BlockVideo.Controllers
 
             if (movie.Id == 0)
             {
+                movie.NumberAvailable = movie.NumberInStock;
                 movie.DateAdded = DateTime.Now;
                 _context.Movies.Add(movie);
             }
@@ -112,6 +115,7 @@ namespace BlockVideo.Controllers
                 movieInDb.GenreId = movie.GenreId;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
                 movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.NumberAvailable = (byte)(movie.NumberInStock - movie.NumberAvailable);
             }
 
             _context.SaveChanges();
